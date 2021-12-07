@@ -23,24 +23,24 @@ public class RegisterController {
     private CheckBox customerCheckBox, ownerCheckBox;
 
     @FXML
-    private Button registerButton;
+    private Button registerButton, backButton;
 
     private String email, fname, lname, password, phoneNum, ccNum, cvv, expDate, location;
 
     @FXML
     void customerChecked(ActionEvent event) {
-        cardNumTextField.setVisible(true);
-        cvvTextField.setVisible(true);
-        expDateTextField.setVisible(true);
-        locationTextField.setVisible(true);
+        cardNumTextField.setDisable(false);
+        cvvTextField.setDisable(false);
+        expDateTextField.setDisable(false);
+        locationTextField.setDisable(false);
     }
 
     @FXML
     void ownerChecked(ActionEvent event) {
-        cardNumTextField.setVisible(false);
-        cvvTextField.setVisible(false);
-        expDateTextField.setVisible(false);
-        locationTextField.setVisible(false);
+        cardNumTextField.setDisable(true);
+        cvvTextField.setDisable(true);
+        expDateTextField.setDisable(true);
+        locationTextField.setDisable(true);
     }
 
     @FXML
@@ -110,4 +110,11 @@ public class RegisterController {
         stage.setScene(new Scene(root));
     }
 
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        // load login screen
+        Parent root = FXMLLoader.load(getClass().getResource("../fxml/loginscreen.fxml"));
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
 }
