@@ -28,7 +28,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="373.0">
                <children>
-                  <TableView layoutY="-1.0" prefHeight="148.0" prefWidth="359.0">
+                  <TableView fx:id="flightTable" layoutY="-1.0" prefHeight="148.0" prefWidth="359.0">
                     <columns>
                       <TableColumn fx:id="airlineColumn" prefWidth="122.39996033906937" text="Airline" />
                       <TableColumn fx:id="numColumn" prefWidth="116.00006103515625" text="Number" />

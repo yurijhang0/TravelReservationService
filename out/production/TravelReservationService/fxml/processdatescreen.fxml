@@ -5,12 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProcessDateController">
    <children>
-      <Button fx:id="setDateButton" layoutX="253.0" layoutY="295.0" mnemonicParsing="false" onAction="#setDate" text="Set Date" />
+      <Button fx:id="setDateButton" layoutX="315.0" layoutY="295.0" mnemonicParsing="false" onAction="#setDate" text="Set Date" />
       <Label layoutX="120.0" layoutY="170.0" text="Set Current Date:" />
       <TextField fx:id="processDateTextField" layoutX="253.0" layoutY="166.0" />
       <Label layoutX="230.0" layoutY="34.0" text="Admin Process Date" />
+      <Button fx:id="backButton" layoutX="233.0" layoutY="295.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>
