@@ -50,6 +50,10 @@ public class RegisterController {
         DBConnectionClass connectNow = new DBConnectionClass();
         Connection connectDB = connectNow.getConnection();
 
+        // booleans for calling other screens
+        boolean owner = false;
+        boolean customer = false;
+
         try {
             // prepare call
             CallableStatement statementRegOwner = connectDB.prepareCall("{call register_owner(?,?,?,?,?)}");
@@ -70,28 +74,37 @@ public class RegisterController {
 
                 statementRegOwner.execute();
                 statementRegOwner.close();
-                if (customerCheckBox.isSelected()) { // customer
-                    // prepare call
-                    CallableStatement statementRegCust = connectDB.prepareCall("{call register_customer(?,?,?,?,?,?,?,?,?)}");
 
-                    ccNum = cardNumTextField.getText();
-                    cvv = cvvTextField.getText();
-                    expDate = expDateTextField.getText();
-                    location = locationTextField.getText();
+                owner = !email.isBlank() && !fname.isBlank() && !lname.isBlank() && !password.isBlank() &&
+                        !phoneNum.isBlank();
+            }
+            if (customerCheckBox.isSelected()) { // customer
+                // prepare call
+                CallableStatement statementRegCust = connectDB.prepareCall("{call register_customer(?,?,?,?,?,?,?,?,?)}");
+                email = emailTextField.getText();
+                fname = fNameTextField.getText();
+                lname = lNameTextField.getText();
+                password = passwordTextField.getText();
+                phoneNum = phoneNumTextField.getText();
+                ccNum = cardNumTextField.getText();
+                System.out.println(ccNum);
+                cvv = cvvTextField.getText();
+                expDate = expDateTextField.getText();
+                location = locationTextField.getText();
 
-                    statementRegCust.setString(1, email);
-                    statementRegCust.setString(2, fname);
-                    statementRegCust.setString(3, lname);
-                    statementRegCust.setString(4, password);
-                    statementRegCust.setString(5, phoneNum);
-                    statementRegCust.setString(6, ccNum);
-                    statementRegCust.setString(7, cvv);
-                    statementRegCust.setDate(8, Date.valueOf(expDate));
-                    statementRegCust.setString(9, location);
+                statementRegCust.setString(1, email);
+                statementRegCust.setString(2, fname);
+                statementRegCust.setString(3, lname);
+                statementRegCust.setString(4, password);
+                statementRegCust.setString(5, phoneNum);
+                statementRegCust.setString(6, ccNum);
+                statementRegCust.setString(7, cvv);
+                statementRegCust.setDate(8, Date.valueOf(expDate));
+                statementRegCust.setString(9, location);
 
-                    statementRegCust.execute();
-                    statementRegCust.close();
-                }
+                statementRegCust.execute();
+                statementRegCust.close();
+                customer = owner && !ccNum.isBlank() && !cvv.isBlank() && !expDate.isBlank();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -100,14 +113,24 @@ public class RegisterController {
         // load home page of customer or owner or both
         Parent root = null;
         if (ownerCheckBox.isSelected() && customerCheckBox.isSelected()) {
-            root = FXMLLoader.load(getClass().getResource("ownercustomerhomescreen.fxml"));
+            if (customer) {
+                root = FXMLLoader.load(getClass().getResource("../fxml/ownercustomerhomescreen.fxml"));
+                Stage stage = (Stage) registerButton.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
         } else if (ownerCheckBox.isSelected()) {
-            root = FXMLLoader.load(getClass().getResource("../fxml/ownerhomescreen.fxml"));
+            if (owner) {
+                root = FXMLLoader.load(getClass().getResource("../fxml/ownerhomescreen.fxml"));
+                Stage stage = (Stage) registerButton.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
         } else if (customerCheckBox.isSelected()) {
-            root = FXMLLoader.load(getClass().getResource("../fxml/customerhomescreen.fxml"));
+            if (customer) {
+                root = FXMLLoader.load(getClass().getResource("../fxml/customerhomescreen.fxml"));
+                Stage stage = (Stage) registerButton.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
         }
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
     }
 
     @FXML

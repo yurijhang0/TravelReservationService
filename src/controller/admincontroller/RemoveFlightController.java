@@ -1,5 +1,6 @@
-package controller;
+package controller.admincontroller;
 
+import controller.DBConnectionClass;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -129,18 +130,14 @@ public class RemoveFlightController implements Initializable {
     }
 
 
-    // getter and setter for airline String
-    public String getAirline() {
-        return airline;
-    }
-
+    // setter for airline String
     public void setAirline(String airline) {
         this.airline = airline;
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
         // load admin home screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/adminhomescreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminhomescreen.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }

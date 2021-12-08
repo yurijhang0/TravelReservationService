@@ -1,4 +1,4 @@
-package controller;
+package controller.admincontroller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ public class AdminHomeController {
     @FXML
     void processDate(ActionEvent event) throws IOException {
         // load process date screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/processdatescreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/processdatescreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -27,7 +27,7 @@ public class AdminHomeController {
     @FXML
     void removeFlight(ActionEvent event) throws IOException {
         // load remove flight screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/removeflightscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/removeflightscreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -35,7 +35,7 @@ public class AdminHomeController {
     @FXML
     void scheduleFlight(ActionEvent event) throws IOException {
         // load schedule flight screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/scheduleflightscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/scheduleflightscreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -43,7 +43,7 @@ public class AdminHomeController {
     @FXML
     void viewAirlines(ActionEvent event) throws IOException {
         // load view flight screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/viewflightscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/viewflightscreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -51,7 +51,7 @@ public class AdminHomeController {
     @FXML
     void viewAirports(ActionEvent event) throws IOException {
         // load view airports screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/viewairportsscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/viewairportscreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -59,7 +59,7 @@ public class AdminHomeController {
     @FXML
     void viewCustomers(ActionEvent event) throws IOException {
         // load view customers screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/viewcustomersscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/viewcustomersscreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -67,7 +67,7 @@ public class AdminHomeController {
     @FXML
     void viewOwners(ActionEvent event) throws IOException {
         // load view owners screen
-        Parent root = FXMLLoader.load(getClass().getResource("viewownersscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/viewownersscreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }

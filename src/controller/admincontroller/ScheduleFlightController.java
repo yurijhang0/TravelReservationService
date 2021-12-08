@@ -1,5 +1,6 @@
-package controller;
+package controller.admincontroller;
 
+import controller.DBConnectionClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +29,7 @@ public class ScheduleFlightController {
     @FXML
     void cancel(ActionEvent event) throws IOException {
         // load admin home screen
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/adminhomescreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminhomescreen.fxml"));
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
