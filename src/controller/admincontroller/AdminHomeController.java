@@ -43,7 +43,7 @@ public class AdminHomeController {
     @FXML
     void viewAirlines(ActionEvent event) throws IOException {
         // load view flight screen
-        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/viewflightscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/viewairlinescreen.fxml"));
         Stage stage = (Stage) processDateButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
