@@ -23,7 +23,8 @@ import java.util.ResourceBundle;
 public class ViewAirportController implements Initializable {
 
     @FXML
-    private TableColumn<Airport, String> addrColumn, idColumn, nameColumn, timeZoneColumn;
+    private TableColumn<Airport, String>  avgDepFlightCostColumn, idColumn, nameColumn, timeZoneColumn,
+            totArrFlightsColumn, totDepFlightsColumn;
 
     @FXML
     private TableView<Airport> airportTable;
@@ -47,10 +48,12 @@ public class ViewAirportController implements Initializable {
         setTimeZone(timeZoneDropDown.getValue());
 
         // column names
-        addrColumn.setCellValueFactory(new PropertyValueFactory<>("airlineName"));
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("airlineNum"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
+        avgDepFlightCostColumn.setCellValueFactory(new PropertyValueFactory<>("avgDepFlightCost"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timeZoneColumn.setCellValueFactory(new PropertyValueFactory<>("timeZone"));
+        totArrFlightsColumn.setCellValueFactory(new PropertyValueFactory<>("totArrFlights"));
+        totDepFlightsColumn.setCellValueFactory(new PropertyValueFactory<>("totDepFlights"));
     }
 
     @FXML
@@ -93,8 +96,7 @@ public class ViewAirportController implements Initializable {
         timeZone = timeZoneDropDown.getValue();
         String id = idTextField.getText();
 
-        String selectStr = "select Airport_Id, Airport_Name, Time_Zone, concat(Street, ', ', City, ', ', State, ', ', " +
-                "Zip) from airport";    // are we supposed to use the view that they have in DB???
+        String selectStr = "select * from view_airports";
 
         // add to select statement based on filter fields used
         if (timeZone != null || !id.isBlank()) {
@@ -123,7 +125,9 @@ public class ViewAirportController implements Initializable {
                         new Airport(queryResult.getString(1),
                                 queryResult.getString(2),
                                 queryResult.getString(3),
-                                queryResult.getString(4))
+                                queryResult.getString(4),
+                                queryResult.getString(5),
+                                queryResult.getString(6))
                 );
             }
 

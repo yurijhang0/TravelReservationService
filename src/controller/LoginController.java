@@ -71,12 +71,9 @@ public class LoginController {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
-            while (queryResult.next()) {
-                if (queryResult.getInt(1) == 1) {   // 1 unique user
-                    return true;
-                } else {
-                    return false;
-                }
+            if (queryResult.next()) {
+                // 1 unique user
+                return queryResult.getInt(1) == 1;
             }
         } catch (Exception e){
             e.printStackTrace();

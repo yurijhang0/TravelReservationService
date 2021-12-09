@@ -13,8 +13,8 @@
       <Label layoutX="68.0" layoutY="171.0" text="Email:" />
       <Label layoutX="68.0" layoutY="219.0" text="Password:" />
       <Label layoutX="68.0" layoutY="263.0" text="Phone Number:" />
-      <CheckBox fx:id="ownerCheckBox" layoutX="222.0" layoutY="308.0" mnemonicParsing="false" onAction="#ownerChecked" selected="true" text="Owner" />
-      <CheckBox fx:id="customerCheckBox" layoutX="305.0" layoutY="308.0" mnemonicParsing="false" onAction="#customerChecked" selected="true" text="Customer" />
+      <CheckBox fx:id="ownerCheckBox" layoutX="222.0" layoutY="308.0" mnemonicParsing="false" onAction="#ownerCustomerCheck" selected="true" text="Owner" />
+      <CheckBox fx:id="customerCheckBox" layoutX="305.0" layoutY="308.0" mnemonicParsing="false" onAction="#ownerCustomerCheck" text="Customer" />
       <TextField fx:id="fNameTextField" layoutX="160.0" layoutY="77.0" />
       <TextField fx:id="lNameTextField" layoutX="160.0" layoutY="122.0" />
       <TextField fx:id="emailTextField" layoutX="160.0" layoutY="171.0" />

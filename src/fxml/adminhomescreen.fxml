@@ -3,15 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admincontroller.AdminHomeController">
    <children>
       <Button fx:id="scheduleFlightButton" layoutX="99.0" layoutY="106.0" mnemonicParsing="false" onAction="#scheduleFlight" text="Schedule Flight" />
-      <Button fx:id="removeFlightButton" layoutX="237.0" layoutY="106.0" mnemonicParsing="false" onAction="#removeFlight" text="Remove Flight" />
-      <Button fx:id="processDateButton" layoutX="383.0" layoutY="106.0" mnemonicParsing="false" onAction="#processDate" text="Process Date" />
+      <Button fx:id="removeFlightButton" layoutX="254.0" layoutY="106.0" mnemonicParsing="false" onAction="#removeFlight" text="Remove Flight" />
+      <Button fx:id="processDateButton" layoutX="393.0" layoutY="106.0" mnemonicParsing="false" onAction="#processDate" text="Process Date" />
       <Button fx:id="viewAirportsButton" layoutX="153.0" layoutY="174.0" mnemonicParsing="false" onAction="#viewAirports" text="View Airports" />
       <Button fx:id="viewCustomersButton" layoutX="146.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewCustomers" text="View Customers" />
-      <Button fx:id="viewAirlinesButton" layoutX="318.0" layoutY="174.0" mnemonicParsing="false" onAction="#viewAirlines" text="View Airlines" />
-      <Button fx:id="viewOwnersButton" layoutX="318.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewOwners" text="View Owners" />
+      <Button fx:id="viewAirlinesButton" layoutX="346.0" layoutY="174.0" mnemonicParsing="false" onAction="#viewAirlines" text="View Airlines" />
+      <Button fx:id="viewOwnersButton" layoutX="350.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewOwners" text="View Owners" />
+      <Button fx:id="backButton" layoutX="280.0" layoutY="313.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

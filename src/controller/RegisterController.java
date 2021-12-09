@@ -28,19 +28,46 @@ public class RegisterController {
     private String email, fname, lname, password, phoneNum, ccNum, cvv, expDate, location;
 
     @FXML
-    void customerChecked(ActionEvent event) {
-        cardNumTextField.setDisable(false);
-        cvvTextField.setDisable(false);
-        expDateTextField.setDisable(false);
-        locationTextField.setDisable(false);
-    }
-
-    @FXML
-    void ownerChecked(ActionEvent event) {
-        cardNumTextField.setDisable(true);
-        cvvTextField.setDisable(true);
-        expDateTextField.setDisable(true);
-        locationTextField.setDisable(true);
+    void ownerCustomerCheck(ActionEvent event) {
+        registerButton.setDisable(false);
+        if (ownerCheckBox.isSelected()) {
+            fNameTextField.setDisable(false);
+            lNameTextField.setDisable(false);
+            emailTextField.setDisable(false);
+            passwordTextField.setDisable(false);
+            phoneNumTextField.setDisable(false);
+        } else {
+            fNameTextField.setDisable(true);
+            lNameTextField.setDisable(true);
+            emailTextField.setDisable(true);
+            passwordTextField.setDisable(true);
+            phoneNumTextField.setDisable(true);
+        }
+        if (customerCheckBox.isSelected()) {
+            cardNumTextField.setDisable(false);
+            cvvTextField.setDisable(false);
+            expDateTextField.setDisable(false);
+            locationTextField.setDisable(false);
+        } else {
+            cardNumTextField.setDisable(true);
+            cvvTextField.setDisable(true);
+            expDateTextField.setDisable(true);
+            locationTextField.setDisable(true);
+        }
+        if (!ownerCheckBox.isSelected() && customerCheckBox.isSelected()) {
+            fNameTextField.setDisable(false);
+            lNameTextField.setDisable(false);
+            emailTextField.setDisable(false);
+            passwordTextField.setDisable(false);
+            phoneNumTextField.setDisable(false);
+            cardNumTextField.setDisable(false);
+            cvvTextField.setDisable(false);
+            expDateTextField.setDisable(false);
+            locationTextField.setDisable(false);
+        }
+        if (!ownerCheckBox.isSelected() && !customerCheckBox.isSelected()) {
+            registerButton.setDisable(true);
+        }
     }
 
     @FXML

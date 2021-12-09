@@ -15,7 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import table_structures.Owner;
+import table_structures.Customer;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -23,27 +24,28 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class ViewOwnersController implements Initializable {
-
-    @FXML
-    private TableColumn<Owner, String> avgPropRatingColumn, nameColumn, numPropColumn, ratingColumn;
+public class ViewCustomersController implements Initializable {
 
     @FXML
     private Button backButton, viewButton;
 
     @FXML
-    private TableView<Owner> customerTableView;
+    private TextField customerNameTextField;
 
     @FXML
-    private TextField ownerNameTextField;
+    private TableView<Customer> customerTableView;
 
-    @Override
+    @FXML
+    private TableColumn<Customer, String> isOwnerColumn, locationColumn, nameColumn, ratingColumn, totalSeatsPurchasedColumn;
+
     public void initialize(URL arg0, ResourceBundle arg1) {
         // column names
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        numPropColumn.setCellValueFactory(new PropertyValueFactory<>("numProp"));
-        avgPropRatingColumn.setCellValueFactory(new PropertyValueFactory<>("avgPropRating"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        isOwnerColumn.setCellValueFactory(new PropertyValueFactory<>("isOwner"));
+        totalSeatsPurchasedColumn.setCellValueFactory(new PropertyValueFactory<>("totalSeats"));
+
     }
 
     @FXML
@@ -52,13 +54,13 @@ public class ViewOwnersController implements Initializable {
         DBConnectionClass connectNow = new DBConnectionClass();
         Connection connectDB = connectNow.getConnection();
 
-        String name = ownerNameTextField.getText();
+        String name = customerNameTextField.getText();
 
-        String selectStr = "select * from view_owners";
+        String selectStr = "select * from view_customers";
 
         // add to select statement based on filter fields used
         if (!name.isBlank()) {
-            selectStr += String.format(" where owner_name like '%s'", name);
+            selectStr += String.format(" where customer_name like '%s'", name);
         }
         selectStr += ";";   // close select statement
 
@@ -68,13 +70,14 @@ public class ViewOwnersController implements Initializable {
                     statement.executeQuery(selectStr);
 
             // populate tableview with result of select statement
-            final ObservableList<Owner> data = FXCollections.observableArrayList();
+            final ObservableList<Customer> data = FXCollections.observableArrayList();
             while (queryResult.next()) {
                 data.add(
-                        new Owner(queryResult.getString(1),
+                        new Customer(queryResult.getString(1),
                                 queryResult.getString(2),
                                 queryResult.getString(3),
-                                queryResult.getString(4))
+                                queryResult.getString(4),
+                                queryResult.getString(5))
                 );
             }
 
@@ -93,5 +96,6 @@ public class ViewOwnersController implements Initializable {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
+
 
 }

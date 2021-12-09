@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -24,21 +23,13 @@
       <Button fx:id="backButton" layoutX="282.0" layoutY="334.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Button fx:id="filterButton" layoutX="526.0" layoutY="96.0" mnemonicParsing="false" onAction="#filter" text="Filter" />
       <Button fx:id="removeButton" layoutX="518.0" layoutY="212.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <ScrollPane hbarPolicy="NEVER" layoutX="115.0" layoutY="151.0" prefHeight="148.0" prefWidth="374.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="373.0">
-               <children>
-                  <TableView fx:id="flightTable" layoutY="-1.0" prefHeight="148.0" prefWidth="359.0">
-                    <columns>
-                      <TableColumn fx:id="airlineColumn" prefWidth="122.39996033906937" text="Airline" />
-                      <TableColumn fx:id="numColumn" prefWidth="116.00006103515625" text="Number" />
-                        <TableColumn fx:id="dateColumn" prefWidth="119.20002746582031" text="Date" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
       <TextField fx:id="flightNumTextField" layoutX="406.0" layoutY="109.0" prefHeight="26.0" prefWidth="82.0" />
+      <TableView fx:id="flightTable" layoutX="120.0" layoutY="151.0" prefHeight="148.0" prefWidth="359.0">
+        <columns>
+          <TableColumn fx:id="airlineColumn" prefWidth="122.39996033906937" text="Airline" />
+          <TableColumn fx:id="numColumn" prefWidth="116.00006103515625" text="Number" />
+            <TableColumn fx:id="dateColumn" prefWidth="119.20002746582031" text="Date" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

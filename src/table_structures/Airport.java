@@ -2,35 +2,34 @@ package table_structures;
 
 public class Airport {
 
-    private String airlineName;
-    private String airlineNum;
-    private String flightDate;
+    private String id;
+    private String name;
     private String timeZone;
+    private String totArrFlights;
+    private String totDepFlights;
+    private String avgDepFlightCost;
 
-    public Airport(String airlineName, String airlineNum, String flightDate, String timeZone) {
-        this.airlineName = airlineName;
-        this.airlineNum = airlineNum;
-        this.flightDate = flightDate;
+    public Airport(String id, String name, String timeZone, String totArrFlights,
+                   String totDepFlights, String avgDepFlightCost) {
+        this.id = id;
+        this.name = name;
         this.timeZone = timeZone;
-    }
+        this.totArrFlights = totArrFlights;
+        this.totDepFlights = totDepFlights;
+        this.avgDepFlightCost = avgDepFlightCost;
 
-    public String getAirlineName() {
-        return airlineName;
     }
-    public void setAirlineName(String airlineName) {
-        this.airlineName = airlineName;
+    public String getId() {
+        return id;
     }
-    public String getAirlineNum() {
-        return airlineNum;
+    public void setId(String id) {
+        this.id = id;
     }
-    public void setAirlineNum(String airlineNum) {
-        this.airlineNum = airlineNum;
+    public String getName() {
+        return name;
     }
-    public String getFlightDate() {
-        return flightDate;
-    }
-    public void setFlightDate(String flightDate) {
-        this.flightDate = flightDate;
+    public void setName(String name) {
+        this.name = name;
     }
     public String getTimeZone() {
         return timeZone;
@@ -38,4 +37,23 @@ public class Airport {
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
     }
+    public String getTotArrFlights() {
+        return totArrFlights;
+    }
+    public void setTotArrFlights(String totArrFlights) {
+        this.totArrFlights = totArrFlights;
+    }
+    public String getTotDepFlights() {
+        return totDepFlights;
+    }
+    public void setTotDepFlights(String totDepFlights) {
+        this.totDepFlights = totDepFlights;
+    }
+    public String getAvgDepFlightCost() {
+        return avgDepFlightCost;
+    }
+    public void setAvgDepFlightCost(String avgDepFlightCost) {
+        this.avgDepFlightCost = avgDepFlightCost;
+    }
+
 }
