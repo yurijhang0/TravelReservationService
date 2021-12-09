@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customercontroller.ViewProperties">
+    <children>
+        <Label layoutX="257.0" layoutY="50.0" text="View Properties" />
+        <ScrollPane layoutX="65.0" layoutY="120.0" prefHeight="197.0" prefWidth="470.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="457.0">
+                    <children>
+                        <TableView fx:id="viewPropertiesTableView" prefHeight="210.0" prefWidth="455.0">
+                            <columns>
+                                <TableColumn fx:id="nameColumn" prefWidth="67.0" text="Name" />
+                                <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="70.0" text="Address" />
+                                <TableColumn fx:id="descriptionColumn" prefWidth="74.0" text="Description" />
+                                <TableColumn fx:id="avgRatingColumn" prefWidth="86.0" text="Avg. Rating" />
+                                <TableColumn fx:id="capacityColumn" prefWidth="81.0" text="Capacity" />
+                        <TableColumn fx:id="costColumn" prefWidth="76.0" text="Cost" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Button fx:id="backButton" layoutX="59.0" layoutY="348.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Button fx:id="filter" layoutX="491.0" layoutY="348.0" mnemonicParsing="false" onAction="#filterButton" text="Filter" />
+      <Label layoutX="173.0" layoutY="80.0" text="Capacity: " />
+      <Label layoutX="297.0" layoutY="80.0" text="-" />
+      <TextField fx:id="capacityFromTextField" layoutX="235.0" layoutY="76.0" prefHeight="26.0" prefWidth="56.0" />
+      <TextField fx:id="capacityToTextField" layoutX="310.0" layoutY="76.0" prefHeight="26.0" prefWidth="56.0" />
+    </children>
+
+</AnchorPane>
