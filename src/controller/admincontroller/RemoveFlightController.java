@@ -1,7 +1,6 @@
 package controller.admincontroller;
 
 import controller.DBConnectionClass;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import table_structures.Flight;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;

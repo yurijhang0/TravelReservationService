@@ -1,7 +1,6 @@
 package table_structures;
 
 public class Airline {
-<<<<<<< HEAD
 
     private String airlineName;
     private String rating;
@@ -39,6 +38,4 @@ public class Airline {
     public void setMinFlight(String minFlight) {
         this.minFlight = minFlight;
     }
-=======
->>>>>>> 8eb782251ea40f1cfbf2353134005ddda8271825
 }
