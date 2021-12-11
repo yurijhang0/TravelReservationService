@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontroller.ViewPropertyReservations">
+    <children>
+        <Label layoutX="217.0" layoutY="48.0" text="View Property Reservations" />
+        <ScrollPane layoutX="65.0" layoutY="120.0" prefHeight="197.0" prefWidth="470.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="457.0">
+                    <children>
+                        <TableView fx:id="propertyReservationTableView" prefHeight="210.0" prefWidth="455.0">
+                            <columns>
+                                <TableColumn fx:id="propertyColumn" prefWidth="67.0" text="Property Name" />
+                                <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="55.0" text="Start Date" />
+                                <TableColumn fx:id="endDateColumn" prefWidth="70.0" text="End Date" />
+                                <TableColumn fx:id="custPhoneNumColumn" prefWidth="83.0" text="Cust. Phone #" />
+                                <TableColumn fx:id="customerEmailColumn" prefWidth="61.0" text="Customer" />
+                                <TableColumn fx:id="costColumn" prefWidth="39.0" text="Cost" />
+                                <TableColumn fx:id="reviewColumnn" prefWidth="40.0" text="Review" />
+                                <TableColumn fx:id="ratingColumn" prefWidth="39.0" text="Rating" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Button fx:id="backButton" layoutX="59.0" layoutY="348.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Label layoutX="124.0" layoutY="80.0" text="Owner Email: " />
+        <Label layoutX="323.0" layoutY="80.0" text="Property: " />
+        <TextField fx:id="ownerEmailTextField" layoutX="198.0" layoutY="76.0" prefHeight="26.0" prefWidth="56.0" />
+        <TextField fx:id="propertyTextField" layoutX="381.0" layoutY="76.0" prefHeight="26.0" prefWidth="56.0" />
+    </children>
+
+</AnchorPane>
