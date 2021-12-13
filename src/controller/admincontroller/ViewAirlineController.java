@@ -88,7 +88,7 @@ public class ViewAirlineController implements Initializable {
     @FXML
     void back(ActionEvent event) throws IOException {
         // load admin home screen
-        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminhomescreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminfxml/adminhomescreen.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }

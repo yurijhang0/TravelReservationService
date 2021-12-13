@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontroller.CustomerReserveProperty">
+    <children>
+            <TableView fx:id="mainTableView" layoutX="133.0" layoutY="113.0" prefHeight="148.0" prefWidth="359.0">
+                <columns>
+                    <TableColumn fx:id="propertyNameColumn" prefWidth="115.0" text="Property Name" />
+                    <TableColumn fx:id="ownerEmailColumn" prefWidth="103.0" text="Owner Email" />
+                    <TableColumn fx:id="capacityColumn" prefWidth="60.0" text="Capacity" />
+            <TableColumn fx:id="costColumn" prefWidth="79.0" text="Cost" />
+                </columns>
+            </TableView>
+        <Label layoutX="262.0" layoutY="30.0" text="Reserve Property" />
+        <Label layoutX="342.0" layoutY="78.0" text="Current Date:" />
+        <Label layoutX="91.0" layoutY="77.0" text="Dates:" />
+        <Label layoutX="218.0" layoutY="77.0" text="-" />
+        <TextField fx:id="fromDateTextField" layoutX="129.0" layoutY="73.0" prefHeight="26.0" prefWidth="82.0" />
+        <TextField fx:id="toDateTextField" layoutX="231.0" layoutY="73.0" prefHeight="26.0" prefWidth="82.0" />
+        <TextField fx:id="currentDateTextField" editable="false" layoutX="423.0" layoutY="73.0" prefHeight="26.0" prefWidth="82.0" />
+        <Button fx:id="backButton" layoutX="86.0" layoutY="342.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Button fx:id="reservePropertyButton" layoutX="458.0" layoutY="342.0" mnemonicParsing="false" onAction="#reserveProperty" text="Reserve Property" />
+      <Label layoutX="159.0" layoutY="283.0" prefHeight="17.0" prefWidth="106.0" text="Number of Guests:" />
+      <TextField fx:id="numGuests" layoutX="272.0" layoutY="279.0" />
+      <TextField fx:id="bookedPropertyName" editable="false" layoutX="272.0" layoutY="335.0" />
+      <TextField fx:id="amountSpent" editable="false" layoutX="272.0" layoutY="363.0" />
+      <Label layoutX="137.0" layoutY="337.0" prefHeight="17.0" prefWidth="128.0" text="Booked Property Name:" />
+      <Label layoutX="204.0" layoutY="367.0" prefHeight="17.0" prefWidth="61.0" text="Total Cost:" />
+    </children>
+
+</AnchorPane>

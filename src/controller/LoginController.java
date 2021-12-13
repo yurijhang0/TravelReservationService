@@ -22,7 +22,7 @@ public class LoginController {
     @FXML
     private TextField passwordTextField, emailTextField;
 
-    private String emailText;
+    private static String emailText;
     private String passwordText;
 
     @FXML
@@ -34,15 +34,24 @@ public class LoginController {
 
         // validate login
         if (!emailText.isBlank() && !passwordText.isBlank()) {
-            if (validateAccount() && validateAdmin()) {
-                // load home screen
-                Parent root = FXMLLoader.load(getClass().getResource("../fxml/adminhomescreen.fxml"));
-                Stage stage = (Stage) loginButton.getScene().getWindow();
-                stage.setScene(new Scene(root));
+            if (validateAccount()) {
+                Parent root = null;
+                if (validateAdmin()) {
+                    // load home screen
+                    root = FXMLLoader.load(getClass().getResource("../fxml/adminfxml/adminhomescreen.fxml"));
+                } else if (validateCustomer() && validateOwner()) {
+                    root = FXMLLoader.load(getClass().getResource("../fxml/adminfxml/ownercustomerhomescreen.fxml"));
+                } else if (validateCustomer()) {
+                    root = FXMLLoader.load(getClass().getResource("../fxml/customerfxml/customerHome.fxml"));
+                } else if (validateOwner()) {
+                    root = FXMLLoader.load(getClass().getResource("../fxml/ownerfxml/ownerhomescreen.fxml"));
+                }
+                if (root != null) {
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                }
             }
         }
-
-
     }
 
     @FXML
@@ -59,6 +68,7 @@ public class LoginController {
 
     }
 
+    // validate account
     public boolean validateAccount() {
         // connect to DB
         DBConnectionClass connectNow = new DBConnectionClass();
@@ -81,6 +91,7 @@ public class LoginController {
         return false;
     }
 
+    // validate admin
     public boolean validateAdmin() {
         // connect to DB
         DBConnectionClass connectNow = new DBConnectionClass();
@@ -106,5 +117,56 @@ public class LoginController {
     }
 
     // validate customer
+    public boolean validateCustomer() {
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = String.format("select count(*) from customer where Email like '%s';", emailText);
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while (queryResult.next()) {
+                if (queryResult.getInt(1) == 1) {   // 1 unique user
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     // validate owner
+    public boolean validateOwner() {
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = String.format("select count(*) from owners where Email like '%s';", emailText);
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while (queryResult.next()) {
+                if (queryResult.getInt(1) == 1) {   // 1 unique user
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static String getEmailText() {
+        return emailText;
+    }
 }

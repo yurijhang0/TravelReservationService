@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontroller.BookFlightController">
+   <children>
+      <Label layoutX="270.0" layoutY="28.0" prefHeight="17.0" prefWidth="61.0" text="Book Flight" />
+      <Button fx:id="backButton" layoutX="65.0" layoutY="325.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button fx:id="bookFlightButton" layoutX="482.0" layoutY="323.0" mnemonicParsing="false" onAction="#bookFlight" text="Book Flight" />
+      <Label layoutX="159.0" layoutY="273.0" prefHeight="17.0" prefWidth="96.0" text="Number of Seats:" />
+      <TextField fx:id="numSeatsBookedField" layoutX="262.0" layoutY="269.0" />
+      <TextField fx:id="BookedFlightNum" editable="false" layoutX="262.0" layoutY="325.0" />
+      <TextField fx:id="amountSpent" editable="false" layoutX="262.0" layoutY="353.0" />
+      <Label layoutX="127.0" layoutY="327.0" prefHeight="17.0" prefWidth="128.0" text="Booked Flight Number:" />
+      <Label layoutX="194.0" layoutY="357.0" prefHeight="17.0" prefWidth="61.0" text="Total Cost:" />
+      <TableView fx:id="mainTableView" layoutX="56.0" layoutY="56.0" prefHeight="200.0" prefWidth="487.0">
+        <columns>
+          <TableColumn fx:id="airlineColumn" prefWidth="114.0" text="Airline" />
+          <TableColumn fx:id="flightNumColumn" prefWidth="95.0" text="Flight Num" />
+            <TableColumn fx:id="availableSeatsColumn" minWidth="0.0" prefWidth="126.0" text="Available Seats" />
+            <TableColumn fx:id="costColumn" prefWidth="167.0" text="Cost" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

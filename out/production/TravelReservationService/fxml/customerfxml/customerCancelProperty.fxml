@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontroller.CustomerCancelProperty">
+    <children>
+        <Label layoutX="231.0" layoutY="63.0" text="Customer Cancel Property" />
+        <Button fx:id="backButton" layoutX="59.0" layoutY="348.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Button fx:id="submitButton" layoutX="491.0" layoutY="348.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+            <TableView fx:id="ccpTableView" layoutX="72.0" layoutY="95.0" prefHeight="210.0" prefWidth="455.0">
+                <columns>
+                    <TableColumn fx:id="reservationDateColumn" prefWidth="103.0" text="Reservation Date" />
+                    <TableColumn fx:id="propertyNameColumn" minWidth="0.0" prefWidth="94.0" text="Property Name" />
+                    <TableColumn fx:id="ownerEmailColumn" prefWidth="94.0" text="Owner Email" />
+                    <TableColumn fx:id="addressColumn" prefWidth="85.0" text="Address" />
+                    <TableColumn fx:id="selectColumn" prefWidth="76.0" text="Select" />
+                </columns>
+            </TableView>
+    </children>
+
+</AnchorPane>

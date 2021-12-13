@@ -135,7 +135,7 @@ public class RemoveFlightController implements Initializable {
 
     public void back(ActionEvent actionEvent) throws IOException {
         // load admin home screen
-        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminhomescreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminfxml/adminhomescreen.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
