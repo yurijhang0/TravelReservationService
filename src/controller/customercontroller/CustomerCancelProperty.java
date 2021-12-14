@@ -2,6 +2,8 @@ package controller.customercontroller;
 
 import controller.DBConnectionClass;
 import controller.LoginController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,36 @@ public class CustomerCancelProperty implements Initializable{
         propertyNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         ownerEmailColumn.setCellValueFactory(new PropertyValueFactory<>("ownerEmail"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String selectStr =
+                String.format("select reserve.Start_Date, reserve.Property_Name, reserve.Owner_Email, view_properties.address " +
+                        "from reserve " +
+                        "left outer join view_properties on view_properties.Property_Name = reserve.Property_Name" +
+                        "where reserve.customer = '%s';", customerEmail);
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<CancelPropertyReservation> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new CancelPropertyReservation(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3),
+                                queryResult.getString(4))
+                );
+            }
+
+            // set tableview with data
+            ccpTableView.setItems(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);

@@ -37,11 +37,11 @@ public class LoginController {
             if (validateAccount()) {
                 Parent root = null;
                 if (validateAdmin()) {
-                    // load home screen
                     root = FXMLLoader.load(getClass().getResource("../fxml/adminfxml/adminhomescreen.fxml"));
                 } else if (validateCustomer() && validateOwner()) {
-                    root = FXMLLoader.load(getClass().getResource("../fxml/adminfxml/ownercustomerhomescreen.fxml"));
-                } else if (validateCustomer()) {
+                    root = FXMLLoader.load(getClass().getResource("../fxml/ownercustomerhomescreen.fxml"));
+                }
+                else if (validateCustomer()) {
                     root = FXMLLoader.load(getClass().getResource("../fxml/customerfxml/customerHome.fxml"));
                 } else if (validateOwner()) {
                     root = FXMLLoader.load(getClass().getResource("../fxml/ownerfxml/ownerhomescreen.fxml"));

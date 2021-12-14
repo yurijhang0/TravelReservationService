@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ownercontroller.OwnerHomeController">
+   <children>
+      <Label layoutX="251.0" layoutY="39.0" prefHeight="26.0" prefWidth="99.0" text="Welcome, Owner!" />
+      <Button fx:id="addPropertyButton" layoutX="256.0" layoutY="139.0" mnemonicParsing="false" onAction="#addProperty" text="Add Property" />
+      <Button fx:id="removePropertyButton" layoutX="245.0" layoutY="207.0" mnemonicParsing="false" onAction="#removeProperty" text="Remove Property" />
+      <Button fx:id="logOutButton" layoutX="493.0" layoutY="339.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+   </children>
+</AnchorPane>

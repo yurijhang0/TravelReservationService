@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ownercontroller.OwnerAddPropertyController">
+   <children>
+      <Label layoutX="52.0" layoutY="90.0" text="Name:" />
+      <Label layoutX="37.0" layoutY="140.0" text="Description:" />
+      <Label layoutX="51.0" layoutY="185.0" text="Street:" />
+      <Label layoutX="57.0" layoutY="230.0" text="City:" />
+      <Label layoutX="52.0" layoutY="273.0" text="State:" />
+      <Label layoutX="59.0" layoutY="309.0" text="Zip" />
+      <Label layoutX="245.0" layoutY="39.0" text="Owner Add Property" />
+      <TextField fx:id="nameTextField" layoutX="126.0" layoutY="86.0" />
+      <TextField fx:id="descriptionTextField" layoutX="126.0" layoutY="135.0" />
+      <TextField fx:id="streetTextField" layoutX="126.0" layoutY="180.0" />
+      <TextField fx:id="cityTextField" layoutX="126.0" layoutY="225.0" />
+      <TextField fx:id="zipTextField" layoutX="126.0" layoutY="304.0" prefHeight="26.0" prefWidth="160.0" />
+      <Label layoutX="326.0" layoutY="111.0" text="Nearest Airport:" />
+      <Label layoutX="328.0" layoutY="153.0" text="Dist. to Airport:" />
+      <Label layoutX="332.0" layoutY="202.0" text="Capacity:" />
+      <TextField fx:id="nearAirportTextField" layoutX="418.0" layoutY="107.0" />
+      <TextField fx:id="distToAirportTextField" layoutX="418.0" layoutY="148.0" />
+      <TextField fx:id="capacityTextField" layoutX="418.0" layoutY="197.0" />
+      <Button fx:id="cancelButton" layoutX="99.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button fx:id="addButton" layoutX="426.0" layoutY="341.0" mnemonicParsing="false" onAction="#addProperty" text="Add" />
+      <ChoiceBox fx:id="stateChoiceBox" layoutX="126.0" layoutY="269.0" prefHeight="26.0" prefWidth="81.0" />
+      <Label layoutX="343.0" layoutY="243.0" text="Cost" />
+      <TextField fx:id="costTextField" layoutX="412.0" layoutY="239.0" />
+   </children>
+</AnchorPane>

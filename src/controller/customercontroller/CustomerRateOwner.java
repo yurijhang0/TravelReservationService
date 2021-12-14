@@ -48,11 +48,11 @@ public class CustomerRateOwner implements Initializable{
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
-        populateRatingTable();
-
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         currentDate = date.toString();
+
+        populateRatingTable();
     }
 
     void populateRatingTable() {

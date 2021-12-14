@@ -102,8 +102,6 @@ public class RegisterController {
                 statementRegOwner.execute();
                 statementRegOwner.close();
 
-                owner = !email.isBlank() && !fname.isBlank() && !lname.isBlank() && !password.isBlank() &&
-                        !phoneNum.isBlank();
             }
             if (customerCheckBox.isSelected()) { // customer
                 // prepare call
@@ -114,7 +112,6 @@ public class RegisterController {
                 password = passwordTextField.getText();
                 phoneNum = phoneNumTextField.getText();
                 ccNum = cardNumTextField.getText();
-                System.out.println(ccNum);
                 cvv = cvvTextField.getText();
                 expDate = expDateTextField.getText();
                 location = locationTextField.getText();
@@ -131,32 +128,9 @@ public class RegisterController {
 
                 statementRegCust.execute();
                 statementRegCust.close();
-                customer = owner && !ccNum.isBlank() && !cvv.isBlank() && !expDate.isBlank();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
-
-        // load home page of customer or owner or both
-        Parent root = null;
-        if (ownerCheckBox.isSelected() && customerCheckBox.isSelected()) {
-            if (customer) {
-                root = FXMLLoader.load(getClass().getResource("../fxml/ownercustomerhomescreen.fxml"));
-                Stage stage = (Stage) registerButton.getScene().getWindow();
-                stage.setScene(new Scene(root));
-            }
-        } else if (ownerCheckBox.isSelected()) {
-            if (owner) {
-                root = FXMLLoader.load(getClass().getResource("../fxml/ownerhomescreen.fxml"));
-                Stage stage = (Stage) registerButton.getScene().getWindow();
-                stage.setScene(new Scene(root));
-            }
-        } else if (customerCheckBox.isSelected()) {
-            if (customer) {
-                root = FXMLLoader.load(getClass().getResource("../fxml/customerhomescreen.fxml"));
-                Stage stage = (Stage) registerButton.getScene().getWindow();
-                stage.setScene(new Scene(root));
-            }
         }
     }
 

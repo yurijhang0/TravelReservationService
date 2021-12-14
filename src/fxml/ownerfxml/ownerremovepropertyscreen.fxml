@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ownercontroller.OwnerRemovePropertyController">
+   <children>
+      <Label layoutX="234.0" layoutY="26.0" text="Owner Remove Property" />
+      <ScrollPane layoutX="57.0" layoutY="89.0" prefHeight="200.0" prefWidth="505.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="489.0">
+               <children>
+                  <TableView fx:id="propertyTable" prefHeight="200.0" prefWidth="488.0">
+                    <columns>
+                      <TableColumn fx:id="propertyNameCol" prefWidth="95.0" text="Property Name" />
+                      <TableColumn fx:id="descriptionCol" prefWidth="119.0" text="Description" />
+                        <TableColumn fx:id="capacityCol" minWidth="2.0" prefWidth="89.0" text="Capacity" />
+                        <TableColumn fx:id="costCol" minWidth="2.0" prefWidth="53.0" text="Cost" />
+                        <TableColumn fx:id="addressCol" minWidth="1.0" prefWidth="131.0" text="Address" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="backButton" layoutX="57.0" layoutY="328.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button fx:id="removePropertyButton" layoutX="442.0" layoutY="328.0" mnemonicParsing="false" onAction="#removeProperty" text="Remove Property" />
+   </children>
+</AnchorPane>
