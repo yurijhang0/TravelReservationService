@@ -17,7 +17,8 @@ import java.sql.Statement;
 public class CustomerHomeController {
 
     @FXML
-    private Button bookFlightButton, viewReservationButton, cancelFlightButton, cancelReservationButton,logoutButton, rateOwnersButton, reservePropertyButton, reviewPropertyButton, viewPropertiesButton;
+    private Button bookFlightButton, viewReservationButton, cancelFlightButton, viewFlightButton,
+            cancelReservationButton,logoutButton, rateOwnersButton, reservePropertyButton, reviewPropertyButton, viewPropertiesButton;
 
 
     @FXML
@@ -83,4 +84,9 @@ public class CustomerHomeController {
         stage.setScene(new Scene(root));
     }
 
+    public void viewFlight(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../fxml/customerfxml/viewflightscreen.fxml"));
+        Stage stage = (Stage) viewFlightButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
 }

@@ -15,6 +15,7 @@
       <Button fx:id="reviewPropertyButton" layoutX="39.0" layoutY="261.0" mnemonicParsing="false" onAction="#reviewProperty" text="Review Property" />
       <Button fx:id="rateOwnersButton" layoutX="465.0" layoutY="260.0" mnemonicParsing="false" onAction="#rateOwners" text="Rate Owners" />
       <Button fx:id="viewReservationButton" layoutX="249.0" layoutY="260.0" mnemonicParsing="false" onAction="#viewReservation" text="View Reservation" />
-      <Button fx:id="logoutButton" layoutX="247.0" layoutY="335.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="logoutButton" layoutX="275.0" layoutY="333.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="viewFlightButton" layoutX="262.0" layoutY="94.0" mnemonicParsing="false" onAction="#viewFlight" text="View Flight" />
    </children>
 </AnchorPane>

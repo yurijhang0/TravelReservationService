@@ -55,6 +55,44 @@ public class ViewPropertyReservations implements Initializable{
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         currentDate = date.toString();
+
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String owner = ownerEmailTextField.getText();
+        String property = propertyTextField.getText();
+
+        String selectStr = "select review.Property_Name, reserve.Start_Date, reserve.End_Date, clients.Phone_Number, " +
+                        "clients.Email, property.Cost, review.Content, review.Score from review  " +
+                        "left outer join clients on clients.Email = review.Customer  " +
+                        "left outer join reserve on reserve.Customer = review.Customer  " +
+                        "left outer join property on property.Property_Name = review.Property_Name;";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<ViewPropertyReservation> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new ViewPropertyReservation(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3),
+                                queryResult.getString(4),
+                                queryResult.getString(5),
+                                queryResult.getString(6),
+                                queryResult.getString(7),
+                                queryResult.getString(8))
+                );
+            }
+
+            // set tableview with data
+            propertyReservationTableView.setItems(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -63,15 +101,6 @@ public class ViewPropertyReservations implements Initializable{
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
-
-//    @FXML
-//    void submit(ActionEvent event) {
-//        if (propertyReservationTableView.getSelectionModel().getSelectedItem() != null
-//                && !ownerEmailTextField.getText().isBlank() && !propertyTextField.getText().isBlank()) {
-//
-//
-//        }
-//    }
 
     @FXML
     void search(ActionEvent event) {

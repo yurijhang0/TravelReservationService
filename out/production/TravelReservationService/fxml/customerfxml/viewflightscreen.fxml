@@ -2,41 +2,32 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customercontroller.ViewFlightController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontroller.ViewFlightController">
     <children>
         <Label layoutX="263.0" layoutY="62.0" text="View Flights" />
         <Label layoutX="163.0" layoutY="108.0" text="Available Seats: " />
         <TextField fx:id="nameTextField" layoutX="260.0" layoutY="104.0" prefHeight="26.0" prefWidth="118.0" />
-        <ScrollPane layoutX="12.0" layoutY="152.0" prefHeight="202.0" prefWidth="581.0">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="588.0">
-                    <children>
-                        <TableView fx:id="viewFlightsTableView" prefHeight="179.0" prefWidth="587.0">
-                            <columns>
-                                <TableColumn fx:id="nameColumn" prefWidth="30.0" text="ID" />
-                                <TableColumn fx:id="airlineColumn" prefWidth="53.0" text="Airline" />
-                                <TableColumn fx:id="fromColumn" prefWidth="50.0" text="From" />
-                        <TableColumn fx:id="toColumn" prefWidth="30.0" text="To" />
-                                <TableColumn fx:id="deptTimeColumn" prefWidth="61.5" text="Dept. time" />
-                        <TableColumn fx:id="arrvTimeColumn" prefWidth="50.0" text="Arr. time" />
-                        <TableColumn fx:id="dateColumnn" prefWidth="37.0" text="Date" />
-                        <TableColumn fx:id="availableSeatsColumn" prefWidth="90.5" text="Available Seats" />
-                        <TableColumn fx:id="costPerSeatColumn" prefWidth="85.0" text="Cost Per Seat" />
-                        <TableColumn fx:id="totalSpentColumn" prefWidth="72.0" text="Total Spent" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </content>
-        </ScrollPane>
       <Button fx:id="backButton" layoutX="56.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Button fx:id="filterButton" layoutX="490.0" layoutY="361.0" mnemonicParsing="false" onAction="#filter" text="Filter" />
+            <TableView fx:id="viewFlightsTableView" layoutX="7.0" layoutY="150.0" prefHeight="179.0" prefWidth="587.0">
+                <columns>
+                    <TableColumn fx:id="nameColumn" prefWidth="30.0" text="ID" />
+                    <TableColumn fx:id="airlineColumn" prefWidth="53.0" text="Airline" />
+                    <TableColumn fx:id="fromColumn" prefWidth="50.0" text="From" />
+            <TableColumn fx:id="toColumn" prefWidth="30.0" text="To" />
+                    <TableColumn fx:id="deptTimeColumn" prefWidth="61.5" text="Dept. time" />
+            <TableColumn fx:id="arrvTimeColumn" prefWidth="50.0" text="Arr. time" />
+            <TableColumn fx:id="dateColumnn" prefWidth="37.0" text="Date" />
+            <TableColumn fx:id="availableSeatsColumn" prefWidth="90.5" text="Available Seats" />
+            <TableColumn fx:id="costPerSeatColumn" prefWidth="85.0" text="Cost Per Seat" />
+            <TableColumn fx:id="totalSpentColumn" prefWidth="72.0" text="Total Spent" />
+                </columns>
+            </TableView>
     </children>
 
 </AnchorPane>

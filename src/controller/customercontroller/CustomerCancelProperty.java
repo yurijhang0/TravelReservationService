@@ -48,7 +48,7 @@ public class CustomerCancelProperty implements Initializable{
                 String.format("select reserve.Start_Date, reserve.Property_Name, reserve.Owner_Email, view_properties.address " +
                         "from reserve " +
                         "left outer join view_properties on view_properties.Property_Name = reserve.Property_Name " +
-                        "where reserve.customer = '%s';", customerEmail);
+                        "where reserve.customer = '%s' and reserve.Was_Cancelled = 0;", customerEmail);
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult =
@@ -101,9 +101,9 @@ public class CustomerCancelProperty implements Initializable{
             try {
                 CallableStatement statementRemFlight =
                         connectDB.prepareCall("{call cancel_property_reservation(?,?,?,?)}");
-                statementRemFlight.setString(3, customerEmail);
                 statementRemFlight.setString(1, name);
                 statementRemFlight.setString(2, ownerEmail);
+                statementRemFlight.setString(3, customerEmail);
                 statementRemFlight.setDate(4, Date.valueOf(currentDate));
 
                 statementRemFlight.execute();
@@ -128,11 +128,7 @@ public class CustomerCancelProperty implements Initializable{
         DBConnectionClass connectNow = new DBConnectionClass();
         Connection connectDB = connectNow.getConnection();
         Statement selectStatement = null;
-        String ctFlightQry = String.format("select count(*) from reserve where Customer = '%s' and Was_Cancelled = 0;",
-                customerEmail);
-
-        // NOT SURE IF THE ABOVE LINE IS CORRECT...
-
+        String ctFlightQry = "select count(*) from reserve where Was_Cancelled = 0;";
 
         // number of flights
         int reservationCount = 0;

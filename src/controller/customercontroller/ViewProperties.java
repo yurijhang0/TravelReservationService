@@ -42,6 +42,41 @@ public class ViewProperties implements Initializable{
         avgRatingColumn.setCellValueFactory(new PropertyValueFactory<>("averageRating"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
+
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String lowerBound = capacityFromTextField.getText();
+        String upperBound = capacityToTextField.getText();
+
+
+        String selectStr = "select property_name, average_rating_score, description, address, capacity," +
+                        "cost_per_night from view_properties;";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<ViewProperty> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new ViewProperty(queryResult.getString(1),
+                                queryResult.getString(4),
+                                queryResult.getString(3),
+                                queryResult.getString(2),
+                                queryResult.getString(5),
+                                queryResult.getString(6))
+                );
+            }
+
+            // set tableview with data
+            viewPropertiesTableView.setItems(data);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML

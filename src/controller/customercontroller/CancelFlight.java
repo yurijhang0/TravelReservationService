@@ -43,6 +43,12 @@ public class CancelFlight implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        currentDate = date.toString();
+        currentDateTextField.setText(currentDate);
+        currentDateTextField.setDisable(true);
+
         populateAirlineDropDown();
         setAirline(airlineDropDown.getValue());
 
@@ -51,11 +57,38 @@ public class CancelFlight implements Initializable{
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("airlineNum"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
 
-        long millis = System.currentTimeMillis();
-        java.sql.Date date = new java.sql.Date(millis);
-        currentDate = date.toString();
-        currentDateTextField.setText(currentDate);
-        currentDateTextField.setDisable(true);
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        airline = airlineDropDown.getValue();
+        String currentDate = currentDateTextField.getText();
+        String flightNum = flightNumberTextField.getText();
+
+        String selectStr =
+                String.format("select Airline_Name, Flight_Num, Flight_Date from flight where Flight_Date > '%s';",
+                        currentDate);
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<Flight3> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new Flight3(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3))
+                );
+            }
+
+            // set tableview with data
+            cancelFlightTableView.setItems(data);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -151,13 +184,11 @@ public class CancelFlight implements Initializable{
 
     @FXML
     void filter(ActionEvent event) {
-// connect to DB
+        // connect to DB
         DBConnectionClass connectNow = new DBConnectionClass();
         Connection connectDB = connectNow.getConnection();
 
         airline = airlineDropDown.getValue();
-//        String fromDate = fromDateTextField.getText();
-//        String toDate = toDateTextField.getText();
         String currentDate = currentDateTextField.getText();
         String flightNum = flightNumberTextField.getText();
 
@@ -169,9 +200,6 @@ public class CancelFlight implements Initializable{
         if (airline != null) {
             selectStr += String.format(" and Airline_Name like '%s'", airline);
         }
-//        if (!fromDate.isBlank() && !toDate.isBlank()) {
-//            selectStr += String.format(" and Flight_Date between '%s' and '%s'", fromDate, toDate);
-//        }
         if (!flightNum.isBlank()) {
             selectStr += String.format(" and Flight_Num = %s", flightNum);
         }
