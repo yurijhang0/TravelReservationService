@@ -44,6 +44,8 @@ public class ViewOwnersController implements Initializable {
         ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
         numPropColumn.setCellValueFactory(new PropertyValueFactory<>("numProp"));
         avgPropRatingColumn.setCellValueFactory(new PropertyValueFactory<>("avgPropRating"));
+
+        populateTable();
     }
 
     @FXML
@@ -92,6 +94,39 @@ public class ViewOwnersController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminfxml/adminhomescreen.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
+    }
+
+    void populateTable() {
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String name = ownerNameTextField.getText();
+
+        String selectStr = "select * from view_owners;";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<Owner> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new Owner(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3),
+                                queryResult.getString(4))
+                );
+            }
+
+            // set tableview with data
+            customerTableView.setItems(data);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

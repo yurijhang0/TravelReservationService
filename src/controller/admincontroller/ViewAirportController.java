@@ -54,6 +54,8 @@ public class ViewAirportController implements Initializable {
         timeZoneColumn.setCellValueFactory(new PropertyValueFactory<>("timeZone"));
         totArrFlightsColumn.setCellValueFactory(new PropertyValueFactory<>("totArrFlights"));
         totDepFlightsColumn.setCellValueFactory(new PropertyValueFactory<>("totDepFlights"));
+
+        populateTable();
     }
 
     @FXML
@@ -112,6 +114,42 @@ public class ViewAirportController implements Initializable {
             selectStr += String.format(" Airport_Id like '%s'", id);
         }
         selectStr += ";";   // close select statement
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<Airport> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new Airport(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3),
+                                queryResult.getString(4),
+                                queryResult.getString(5),
+                                queryResult.getString(6))
+                );
+            }
+
+            // set tableview with data
+            airportTable.setItems(data);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void populateTable() {
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        timeZone = timeZoneDropDown.getValue();
+        String id = idTextField.getText();
+
+        String selectStr = "select * from view_airports;";
 
         try {
             Statement statement = connectDB.createStatement();

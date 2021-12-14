@@ -47,7 +47,7 @@ public class CustomerCancelProperty implements Initializable{
         String selectStr =
                 String.format("select reserve.Start_Date, reserve.Property_Name, reserve.Owner_Email, view_properties.address " +
                         "from reserve " +
-                        "left outer join view_properties on view_properties.Property_Name = reserve.Property_Name" +
+                        "left outer join view_properties on view_properties.Property_Name = reserve.Property_Name " +
                         "where reserve.customer = '%s';", customerEmail);
         try {
             Statement statement = connectDB.createStatement();

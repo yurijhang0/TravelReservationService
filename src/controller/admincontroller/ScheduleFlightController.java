@@ -4,6 +4,7 @@ import controller.DBConnectionClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,9 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class ScheduleFlightController {
+public class ScheduleFlightController implements Initializable {
 
     @FXML
     private Button cancelButton, scheduleButton;
@@ -25,6 +28,15 @@ public class ScheduleFlightController {
 
     private String flightNum, airlineName, fromAirport, toAirport, departureTime, arrivalTime, flightDate,
             cost, capacity, currentDate;
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        currentDate = date.toString();
+        currentDateTextField.setText(currentDate);
+        currentDateTextField.setDisable(true);
+    }
 
     @FXML
     void cancel(ActionEvent event) throws IOException {
@@ -54,7 +66,6 @@ public class ScheduleFlightController {
             flightDate = flightDateTextField.getText();
             cost = costPerPersonTextField.getText();
             capacity = capacityTextField.getText();
-            currentDate = currentDateTextField.getText();
 
             statementScheduleFlight.setString(1, flightNum);
             statementScheduleFlight.setString(2, airlineName);

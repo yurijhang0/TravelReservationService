@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import table_structures.Airline;
+import table_structures.RateOwner;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -43,6 +45,8 @@ public class ViewAirlineController implements Initializable {
         ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
         totalFlightsColumn.setCellValueFactory(new PropertyValueFactory<>("totalFlight"));
         minFlightCostColumn.setCellValueFactory(new PropertyValueFactory<>("minFlight"));
+
+        populateTable();
     }
 
     @FXML
@@ -91,6 +95,39 @@ public class ViewAirlineController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../../fxml/adminfxml/adminhomescreen.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(new Scene(root));
+    }
+
+    void populateTable() {
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
+
+        String name = airlineNameTextField.getText();
+
+        String selectStr = "select * from view_airlines;";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<Airline> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new Airline(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3),
+                                queryResult.getString(4))
+                );
+            }
+
+            // set tableview with data
+            airlineTableView.setItems(data);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

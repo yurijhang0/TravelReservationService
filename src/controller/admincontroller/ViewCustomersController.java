@@ -46,6 +46,7 @@ public class ViewCustomersController implements Initializable {
         isOwnerColumn.setCellValueFactory(new PropertyValueFactory<>("isOwner"));
         totalSeatsPurchasedColumn.setCellValueFactory(new PropertyValueFactory<>("totalSeats"));
 
+        populateTable();
     }
 
     @FXML
@@ -97,5 +98,37 @@ public class ViewCustomersController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    void populateTable() {
+        // connect to DB
+        DBConnectionClass connectNow = new DBConnectionClass();
+        Connection connectDB = connectNow.getConnection();
 
+        String name = customerNameTextField.getText();
+
+        String selectStr = "select * from view_customers;";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult =
+                    statement.executeQuery(selectStr);
+
+            // populate tableview with result of select statement
+            final ObservableList<Customer> data = FXCollections.observableArrayList();
+            while (queryResult.next()) {
+                data.add(
+                        new Customer(queryResult.getString(1),
+                                queryResult.getString(2),
+                                queryResult.getString(3),
+                                queryResult.getString(4),
+                                queryResult.getString(5))
+                );
+            }
+
+            // set tableview with data
+            customerTableView.setItems(data);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
