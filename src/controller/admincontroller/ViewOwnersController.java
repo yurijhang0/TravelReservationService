@@ -60,7 +60,7 @@ public class ViewOwnersController implements Initializable {
 
         // add to select statement based on filter fields used
         if (!name.isBlank()) {
-            selectStr += String.format(" where owner_name like '%s'", name);
+            selectStr += String.format(" where owner_name like '%%%s%%'", name);
         }
         selectStr += ";";   // close select statement
 

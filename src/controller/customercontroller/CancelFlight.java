@@ -66,7 +66,9 @@ public class CancelFlight implements Initializable{
         String flightNum = flightNumberTextField.getText();
 
         String selectStr =
-                String.format("select Airline_Name, Flight_Num, Flight_Date from flight where Flight_Date > '%s';",
+                String.format("select Airline_Name, Flight_Num, Flight_Date from flight natural join book where " +
+                                "Flight_Date > '%s' and" +
+                                " Was_Cancelled = 0;",
                         currentDate);
         try {
             Statement statement = connectDB.createStatement();
@@ -132,7 +134,7 @@ public class CancelFlight implements Initializable{
 
             try {
                 CallableStatement statementRemFlight =
-                        connectDB.prepareCall("{call cancel_flight_booking(?,?,?,?,?)}");
+                        connectDB.prepareCall("{call cancel_flight_booking(?,?,?,?)}");
                 statementRemFlight.setString(1, customerEmail);
                 statementRemFlight.setString(2, flightNum);
                 statementRemFlight.setString(3, airlineName);

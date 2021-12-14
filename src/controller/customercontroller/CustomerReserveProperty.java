@@ -113,12 +113,12 @@ public class CustomerReserveProperty implements Initializable {
             try {
                 CallableStatement statementRemFlight =
                         connectDB.prepareCall("{call reserve_property(?,?,?,?,?,?,?)}"); // FIX THIS
-                statementRemFlight.setString(3, customerEmail);
                 statementRemFlight.setString(1, name);
                 statementRemFlight.setString(2, ownerEmail);
-                statementRemFlight.setString(4, fromDateTextField.getText());
-                statementRemFlight.setString(5, toDateTextField.getText());
-                statementRemFlight.setString(6, numGuestsBooked);
+                statementRemFlight.setString(3, customerEmail);
+                statementRemFlight.setDate(4, Date.valueOf(fromDateTextField.getText()));
+                statementRemFlight.setDate(5, Date.valueOf(toDateTextField.getText()));
+                statementRemFlight.setInt(6, Integer.parseInt(numGuestsBooked));
                 statementRemFlight.setDate(7, Date.valueOf(currentDate));
 
                 statementRemFlight.execute();
